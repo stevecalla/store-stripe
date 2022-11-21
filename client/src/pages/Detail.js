@@ -14,15 +14,28 @@ import { QUERY_PRODUCTS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
 
+//section
+import { useSelector, useDispatch } from 'react-redux';
+// import { useReducer } from 'react';
+// import reducer from '../../utils/reducers';
+//section end
+
 function Detail() {
-  const [state, dispatch] = useStoreContext();
+  // const [state, dispatch] = useStoreContext();
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({});
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { products, cart } = state;
+  // const { products, cart } = state;
+
+  //section
+  const { cart, products } = useSelector(state => state);
+  // const { products } = useSelector(state => state);
+  let dispatch = useDispatch();
+  // console.log(currentCategory);
+  //section end
 
   useEffect(() => {
     // already in global store
