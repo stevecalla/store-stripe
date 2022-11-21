@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import reducer from '../../utils/reducers';
 //section end
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe('pk_test_51M6fjwEBZh4a6wqZ8CDy0BW1HZ4Cxp2Dghgl7cq1GTVB0iRp2HCE806Kqh7PZhNkHhDRHcQGHDR7Yirqflkyv97300MntRKWsx');
 
 const Cart = () => {
   // const [state, dispatch] = useStoreContext();
