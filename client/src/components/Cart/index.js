@@ -11,8 +11,8 @@ import './style.css';
 
 //section
 import { useDispatch, useSelector } from 'react-redux';
-import { useReducer } from 'react';
-import reducer from '../../utils/reducers';
+// import { useReducer } from 'react';
+// import reducer from '../../utils/reducers';
 //section end
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -24,7 +24,6 @@ const Cart = () => {
   //section
   const { cart, cartOpen } = useSelector(state => state);
   let dispatch = useDispatch();
-  // console.log(categories);
   //section end
 
   useEffect(() => {
