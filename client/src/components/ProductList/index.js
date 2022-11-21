@@ -7,12 +7,26 @@ import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
-function ProductList() {
-  const [state, dispatch] = useStoreContext();
+//section
+import { useSelector, useDispatch } from 'react-redux';
+import { useReducer } from 'react';
+import reducer from '../../utils/reducers';
+//section end
 
-  const { currentCategory } = state;
+function ProductList() {
+  // const [state, dispatch] = useStoreContext();
+
+  // const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
+  // console.log('product query = ', data)
+
+  //section
+  const { currentCategory } = useSelector(state => state);
+  const { products } = useSelector(state => state);
+  let dispatch = useDispatch();
+  // console.log(currentCategory);
+  //section end
 
   useEffect(() => {
     if (data) {
@@ -35,10 +49,10 @@ function ProductList() {
 
   function filterProducts() {
     if (!currentCategory) {
-      return state.products;
+      return products;
     }
 
-    return state.products.filter(
+    return products.filter(
       (product) => product.category._id === currentCategory
     );
   }
@@ -46,9 +60,9 @@ function ProductList() {
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.products.length ? (
+      {products.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
+          {filterProducts().map((product, index) => (
             <ProductItem
               key={product._id}
               _id={product._id}

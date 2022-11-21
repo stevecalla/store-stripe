@@ -7,11 +7,11 @@ import {
   ADD_MULTIPLE_TO_CART,
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
-  CLEAR_CART,z
+  CLEAR_CART,
   TOGGLE_CART,
 } from './actions';
 
-export const reducer = (state, action) => {
+export default function reducer(state, action) {
   switch (action.type) {
     case UPDATE_PRODUCTS:
       return {
@@ -30,7 +30,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         cart: [...state.cart, ...action.products],
-      };A
+      };
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
@@ -43,8 +43,6 @@ export const reducer = (state, action) => {
         }),
       };
 
-    // TODO: Add a comment describing the functionality of the REMOVE_FROM_CART case
-    // Your comment here
     case REMOVE_FROM_CART:
       let newState = state.cart.filter((product) => {
         return product._id !== action._id;
@@ -76,13 +74,15 @@ export const reducer = (state, action) => {
       };
 
     case UPDATE_CURRENT_CATEGORY:
+
+      console.log(state);
+      console.log(action.currentCategory)
+
       return {
         ...state,
         currentCategory: action.currentCategory,
       };
 
-    // TODO: Add a comment describing what the default case is for
-    // Your comment here
     default:
       return state;
   }

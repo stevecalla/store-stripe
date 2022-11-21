@@ -8,12 +8,24 @@ import {
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
-function CategoryMenu() {
-  const [state, dispatch] = useStoreContext();
+//section
+import { useDispatch, useSelector } from 'react-redux';
+import { useReducer } from 'react';
+import reducer from '../../utils/reducers';
+//section end
 
-  const { categories } = state;
+function CategoryMenu() {
+  // const [state, dispatch] = useStoreContext();
+
+  // const { categories } = state;
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
+
+    //section
+    const { categories } = useSelector(state => state);
+    let dispatch = useDispatch();
+    // console.log(categories);
+    //section end
 
   useEffect(() => {
     if (categoryData) {
